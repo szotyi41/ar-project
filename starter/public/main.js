@@ -16,12 +16,11 @@ let hitTestSourceRequested = false;
 let planeFound = false;
 let flowersGltf;
 
-(function() {
-  alert('Main js runs');
-})();
 
 // check for webxr session support
 if ("xr" in navigator) {
+  alert('Main js runs has xr');
+
   navigator.xr.isSessionSupported("immersive-ar").then((supported) => {
     alert('Ar supported ' + JSON.stringify(supported))
     if (supported) {
@@ -31,6 +30,8 @@ if ("xr" in navigator) {
       animate();
     }
   });
+} else {
+  alert('Main js runs has no xr');
 }
 
 function sessionStart() {
