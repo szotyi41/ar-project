@@ -110,12 +110,12 @@ const createScene = async () => {
   // setup prompt to move phone if no planes found
   const trackingPrompt = new TrackingPrompt(xr, xrTest, fm);
 
-  //load picture.glb
+  //load speeder.glb
 
   const model = await BABYLON.SceneLoader.ImportMeshAsync(
     "",
     "",
-    "picture.glb",
+    "speeder.glb",
     scene
   );
 
@@ -132,7 +132,7 @@ const createScene = async () => {
   });
 
   mats = [];
-  let picture = model.meshes[0];
+  let speeder = model.meshes[0];
   // get materials from each mesh
   model.meshes.forEach((mesh) => {
     if (mesh.material) {
@@ -140,12 +140,12 @@ const createScene = async () => {
     }
   });
 
-  //create dummy object and add picture as child
+  //create dummy object and add speeder as child
   const speederParent = new BABYLON.Mesh("speederParent", scene);
-  picture.parent = speederParent;
+  speeder.parent = speederParent;
 
-  //offset to make it feel like picture is in center of screen when placing
-  picture.position.z = -1;
+  //offset to make it feel like speeder is in center of screen when placing
+  speeder.position.z = -1;
   speederParent.position.z = 1;
 
   // start hidden until we find a  hittest
@@ -154,7 +154,7 @@ const createScene = async () => {
   // remove duplicates
   mats = [...new Set(mats)];
 
-  //make picture transparent until placed
+  //make speeder transparent until placed
   setTransparency(true);
 
   //get material named "Engine"
@@ -181,19 +181,19 @@ const createScene = async () => {
     BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE
   );
 
-  //apply to picture
+  //apply to speeder
   const keys = [];
   keys.push({
     frame: 0,
-    value: picture.position.y, // Start from current y position
+    value: speeder.position.y, // Start from current y position
   });
   keys.push({
     frame: 30,
-    value: picture.position.y + 0.1, // Go up
+    value: speeder.position.y + 0.1, // Go up
   });
   keys.push({
     frame: 60,
-    value: picture.position.y, // Back to original y position
+    value: speeder.position.y, // Back to original y position
   });
   bob.setKeys(keys);
 
@@ -206,14 +206,14 @@ const createScene = async () => {
   // Assign the easing function to the animation
   bob.setEasingFunction(easingFunction);
 
-  picture.animations = picture.animations || []; // Ensure animations array exists
-  picture.animations.push(bob);
+  speeder.animations = speeder.animations || []; // Ensure animations array exists
+  speeder.animations.push(bob);
 
-  scene.beginAnimation(picture, 0, 60, true);
+  scene.beginAnimation(speeder, 0, 60, true);
 
   xrTest.onHitTestResultObservable.add((results) => {
     if (results.length) {
-      // update picture to hit point if not placed
+      // update speeder to hit point if not placed
       if (!placed) {
         speederParent.isVisible = true;
         var hitTest = results[0];
@@ -222,7 +222,7 @@ const createScene = async () => {
           speederParent.rotationQuaternion,
           speederParent.position
         );
-        // if the user has requested placement, place the picture
+        // if the user has requested placement, place the speeder
         if (placeRequest) {
           setTransparency(false);
           placed = true;
@@ -230,7 +230,7 @@ const createScene = async () => {
         }
       }
     } else {
-      // hide picture if no hit and not placed
+      // hide speeder if no hit and not placed
       if (!placed) speederParent.isVisible = false;
     }
   });
