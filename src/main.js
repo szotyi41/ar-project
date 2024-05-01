@@ -115,7 +115,7 @@ const createScene = async () => {
   const model = await BABYLON.SceneLoader.ImportMeshAsync(
     "",
     "",
-    "speeder.glb",
+    "image.glb",
     scene
   );
 
