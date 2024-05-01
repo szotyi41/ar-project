@@ -32,4 +32,4 @@ You can remove `&redirect=true` if you want to handle the timing of redirecting 
 
 For quick hosting we recommend using Cloudflare's Pages as a fast and free way to host your sample code online with SSL. See our [Development Guide](https://launch.variant3d.com/docs/development-guide) for more information.
 
-CyberPunk Speeder model CC BY 4.0 by [Piotr Pisiak](https://sketchfab.com/3d-models/cyberpunk-speeder-78cf4a37a1604ddeb99651d531d7a0ff)
+CyberPunk Speeder model CC BY 4.0 by [Piotr Pisiak](https://sketchfab.com/3d-models/cyberpunk-picture-78cf4a37a1604ddeb99651d531d7a0ff)
